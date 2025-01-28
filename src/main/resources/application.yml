@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: TaskMngGraphQl
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/task_db
+    username: root
+    password: 12345678
+  sql:
+    init:
+      mode: always
+graphql:
+  schema:
+    printer:
+      enabled: true

@@ -1,0 +1,30 @@
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    tasks: [Task]
+}
+
+type Task {
+    id: ID!
+    description: String!
+    userId: ID!
+    user: User
+}
+
+type Query {
+    getAllUsers: [User]
+    getUserById(id: ID!): User
+    getAllTasks: [Task]
+    getTaskById(id: ID!): Task
+}
+
+type Mutation {
+    createUser(name: String!, email: String!): User
+    updateUser(id: ID!, name: String, email: String): User
+    deleteUser(id: ID!): String
+
+    createTask(description: String!, userId: ID!): Task
+    updateTask(id: ID!, description: String, userId: ID): Task
+    deleteTask(id: ID!): String
+}
