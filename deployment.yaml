@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-app
+spec:
+  replicas: 2  # Number of pods you want to run
+  selector:
+    matchLabels:
+      app: taskmnggraphql
+  template:
+    metadata:
+      labels:
+        app: taskmnggraphql
+    spec:
+      containers:
+        - name: task-container
+          image: taskmnggraphql  # Use the image built earlier
+          ports:
+            - containerPort: 8080

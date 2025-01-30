@@ -1,0 +1,30 @@
+version: '3.8'  # You can use a different version if needed
+
+services:
+  taskmnggraphql:
+    image: taskmnggraphql  # Or you can use 'build' to build the image locally
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    restart: always  # Restart policy to always restart the container if it stops
+    container_name: task-container  # Ensure that Docker Compose always uses the same container name
+    networks:
+      - tasknet
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.7  # You can change the version of MySQL as needed
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: task_db
+    ports:
+      - "3306:3306"
+    networks:
+      - tasknet
+
+networks:
+  tasknet:
+    driver: bridge
